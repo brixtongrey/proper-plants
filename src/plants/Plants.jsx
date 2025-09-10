@@ -1,11 +1,11 @@
-function Plants () {
+function Plant ({ plant }) {
     return (
-        <li className="plants">
-            <figure>{Plants.image}</figure>
-            <h3>{Plants.name}</h3>
+        <li className="plant">
+            <figure>{plant.image}</figure>
+            <h3>{plant.name}</h3>
             <button>Add to Cart</button>
         </li>
     )
 }
 
-export default Plants;
+export default Plant;
