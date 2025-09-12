@@ -1,9 +1,27 @@
 import { useState } from "react";
 import { PLANTS } from "./data/data";
 import PlantsGrid from "./plants/PlantsGrid";
+import Cart from "./cart/Cart";
 
 function App() {
-  const [cart, setCart] = useState();
+  const [cart, setCart] = useState([]);
+
+  const addToCart = (plant) => {
+    const itemExist = cart.find((item) => item.id === plant.id);
+    if (itemExist) {
+      setCart (
+        cart.map((item) => 
+        item.id === plant.id ? {...item, quantity: item.quantity + 1} : item
+        )
+      );
+    } else {
+      const item = {...plant, quantity: 1};
+      setCart([...cart, item]);
+    }
+  };
+
+
+
   return (
     <>
       <h1>Proper Plants</h1>
