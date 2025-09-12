@@ -20,13 +20,29 @@ function App() {
     }
   };
 
-
+  const removeFromCart = (itemToRemove) => {
+    setCart(
+      cart.map((item) => {
+        if (item.id === itemToRemove.id) {
+          return {...item,quantity: item.quantity - 1};
+        } else {
+          return item;
+        }
+      })
+      .filter((item) => item.quantity > 0)
+    );
+  }
 
   return (
     <>
       <h1>Proper Plants</h1>
       <main>
-        <PlantsGrid plants={PLANTS} />
+        <PlantsGrid plants={PLANTS} addToCart={addToCart}/>
+        <Cart
+        cart = {cart}
+        addToCart={addToCart}
+        removeFromCart={removeFromCart}
+        />
       </main>
     </>
   );
